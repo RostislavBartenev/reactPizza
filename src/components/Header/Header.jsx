@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Route } from 'react-router-dom'
 
 import './Header.scss'
 
@@ -10,8 +11,11 @@ const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <HeaderLogo />
-        <HeaderCart />
+        <Link to="/"><HeaderLogo /></Link>
+        <Route exact path="/">
+          <Link to="/cart"><HeaderCart /></Link>
+        </Route>
+
       </div>
     </div>
   )

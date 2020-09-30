@@ -8,14 +8,17 @@ const TopContainer = () => {
   return (
     <div className="content__top">
       <Categories items={[
-        'Все',
         'Мясные',
         'Вегетарианская',
         'Гриль',
         'Острые',
         'Закрытые',
       ]}/>
-      <Sort />
+      <Sort items={[
+        'Популярности',
+        'Цене',
+        'Алфавиту'
+      ]}/>
     </div>
   )
 }

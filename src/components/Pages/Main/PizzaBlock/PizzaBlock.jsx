@@ -20,6 +20,7 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
     setActiveSize(index)
   }
 
+
   return (
     <div className="pizza-block">
       <img
@@ -34,10 +35,13 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
             <li
               key={type}
               onClick={() => onSelectType(index)}
-              className={classNames({
+              className={
+                classNames({
                 'active': activeType === index,
                 'disabled': !types.includes(index)
-              })}>
+              })
+              }
+            >
               {type}
             </li>
           ))}
@@ -46,11 +50,14 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
           {availableSize.map((size, index) => (
             <li
               key={size}
-              onClick={() => onsSelectSize(index)}
-              className={classNames({
-                'active': activeSize === index,
+              onClick={() => onsSelectSize(size)}
+              className={
+                classNames({
+                'active': activeSize === size,
                 'disabled': !sizes.includes(size)
-              })}>
+                })
+              }
+            >
               {size} см.
             </li>
           ))}
@@ -95,4 +102,4 @@ PizzaBlock.defaultProps = {
   sizes: [],
 }
 
-export default PizzaBlock
+export default React.memo(PizzaBlock)

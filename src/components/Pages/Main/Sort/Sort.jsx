@@ -3,22 +3,18 @@ import React, {useEffect, useRef, useState} from "react"
 import './Sort.scss'
 
 
-const Sort = ({items}) => {
+const Sort = ({items, activeSortType, onClickSortType}) => {
 
   const [visiblePopUp, setVisiblePopUp] = useState(false)
-  const [activeItem, setActiveItem] = useState(0)
-
-
 
   const sortRef = useRef()
 
-  const activeLabel = items[activeItem]
+  const activeLabel = items.find((obj) => obj.type === activeSortType).name
 
   const onSelectItem = (index) => {
-    setActiveItem(index)
+    onClickSortType(index)
     setVisiblePopUp(false)
   }
-
 
   const toggleVisiblePopUp = () => {
     setVisiblePopUp(!visiblePopUp)
@@ -55,12 +51,12 @@ const Sort = ({items}) => {
       {visiblePopUp && <div className="sort__popup">
         <ul>
           { items &&
-          items.map((name, index) => (
+          items.map((obj, index) => (
             <li
-              onClick={() => onSelectItem(index)}
-              key={`${name}_${index}`}
-              className={activeItem === index ? 'active' : ''}>
-              {name}
+              onClick={() => onSelectItem(obj)}
+              key={`${obj.type}_${index}`}
+              className={activeSortType === obj.type ? 'active' : ''}>
+              {obj.name}
             </li>
           ))
           }
@@ -70,4 +66,4 @@ const Sort = ({items}) => {
   )
 }
 
-export default Sort
+export default React.memo(Sort)

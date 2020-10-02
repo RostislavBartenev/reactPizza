@@ -1,8 +1,13 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
-const HeaderCart = () => (
+const HeaderCart = () => {
+
+  const {totalPrice, totalCount} = useSelector(({cart}) => cart)
+
+  return (
     <div className="button button--cart">
-      <span>520 ₽</span>
+      <span>{totalPrice} ₽</span>
       <div className="button__delimiter"/>
       <svg
         width="18"
@@ -33,8 +38,9 @@ const HeaderCart = () => (
           strokeLinejoin="round"
         />
       </svg>
-      <span>3</span>
+      <span>{totalCount}</span>
     </div>
-)
+  )
+}
 
 export default HeaderCart

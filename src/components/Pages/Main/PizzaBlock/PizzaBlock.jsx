@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import './PizzaBlock.scss'
 
-const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => {
+const PizzaBlock = ({id, name, imageUrl, types, sizes, price, onClickAddPizza, addedCount }) => {
 
   const availableTypes = ['тонкое', 'традиционное']
   const availableSize = [26, 30, 40]
@@ -18,6 +18,11 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
 
   const onsSelectSize = index => {
     setActiveSize(index)
+  }
+
+  const onAddPizza = () => {
+    const obj = {id, name, imageUrl, price, size: activeSize, type: availableTypes[activeType]}
+    onClickAddPizza(obj)
   }
 
 
@@ -47,7 +52,7 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
           ))}
         </ul>
         <ul>
-          {availableSize.map((size, index) => (
+          {availableSize.map((size) => (
             <li
               key={size}
               onClick={() => onsSelectSize(size)}
@@ -65,7 +70,7 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <button onClick={onAddPizza} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -79,8 +84,8 @@ const PizzaBlock = ({name, imageUrl, types, sizes, price, category, rating}) => 
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {addedCount && <i>{addedCount}</i>}
+        </button>
       </div>
     </div>
   )

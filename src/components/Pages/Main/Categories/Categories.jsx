@@ -2,10 +2,7 @@ import React from "react";
 
 import './Categories.scss'
 
-const Categories = ({activeCategory, items, onClickCategory}) => {
-
-
-  return (
+const Categories = ({activeCategory, items, onClickCategory}) => (
     <div className="categories">
       <ul>
         <li onClick={() => onClickCategory(null)}
@@ -24,7 +21,6 @@ const Categories = ({activeCategory, items, onClickCategory}) => {
         }
       </ul>
     </div>
-  )
-}
+)
 
 export default React.memo(Categories)

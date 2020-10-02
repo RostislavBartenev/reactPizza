@@ -5,14 +5,13 @@ export const setLoaded = payload => ({
 })
 
 export const fetchPizzas = (category, sortBy) => dispatch => {
-  dispatch(({
-    type: 'SET_LOADED',
-    payload: false,
-  }))
+
+  dispatch(setLoaded( false))
 
   fetch(`http://localhost:3001/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
     .then(resp => resp.json())
     .then(data => dispatch(setPizzas(data)))
+
 }
 
 export const setPizzas = (items) => ({

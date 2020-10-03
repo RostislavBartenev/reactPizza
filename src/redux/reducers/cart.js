@@ -59,7 +59,7 @@ const cart = (state = initialState, action) => {
 
       console.log(newItems)
 
-      newItems[action.payload].shift()
+      newItems[action.payload].pop()
 
       console.log(newItems)
 
